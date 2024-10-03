@@ -87,7 +87,7 @@ class CompanyController extends Controller
             'logo' => $request->has('logo') ? $request->logo : $company->logo,
         ]);
 
-        return redirect()->route('company.edit', $company);
+        return redirect()->route('company.show', $company);
     }
 
     /**

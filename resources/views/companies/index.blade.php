@@ -36,7 +36,7 @@
                                 <p><a class="text-sky-600 underline" target="_blank" href="http://google.com">http://google.com</a></p>
                             </div>
                         </div>
-                        <div class="space-y-1 text-right pl-6 my-auto">
+                        <div class="space-y-1 text-right pl-6 mb-auto">
                             <a href="{{ route('company.edit', $company) }}" class="bg-blue-600 hover:bg-blue-600/90 rounded py-1 px-4 text-white font-bold inline-block">Edit</a>
 
                             <form method="POST" action="{{ route('company.destroy', $company) }}" class="inline-block">
