@@ -26,7 +26,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 flex justify-between">
                         <div class="flex mr-4">
-                            <div class="mr-4 hidden sm:block">
+                            <div class="mr-4 hidden sm:flex items-center">
                                 <img src="{{ asset($company->logo) }}" alt="{{ $company->name }}" height="100" width="100">
                             </div>
                             <div class="space-y-1 pl-4 sm:border-l border-gray-400">
