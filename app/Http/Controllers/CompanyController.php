@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 
 class CompanyController extends Controller
 {
@@ -12,9 +14,9 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::with('employees')->paginate(10);
+        $companies = Company::with('employees')->latest()->paginate(10);
 
-        return view('companies', ['companies' => $companies]);
+        return view('companies.index', ['companies' => $companies]);
     }
 
     /**
@@ -22,15 +24,26 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        //
+        $request->validated();
+
+        $logoPath = $request->logo->store('logos');
+
+        $company = Company::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'website' => $request->website,
+            'logo' => $logoPath,
+        ]);
+
+        return redirect()->route('company.show', $company);
     }
 
     /**
@@ -38,7 +51,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return view('companies.show', ['company' => $company]);
     }
 
     /**
@@ -46,15 +59,23 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', ['company' => $company]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyRequest $request, Company $company)
     {
-        //
+        $request->validated();
+
+        $company->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'website' => $request->website,
+        ]);
+
+        return redirect()->route('company.edit', $company);
     }
 
     /**
@@ -62,6 +83,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+
+        return redirect()->route('company');
     }
 }
