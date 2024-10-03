@@ -19,7 +19,7 @@ class CompanyFactory extends Factory
         return [
             'name' => fake()->company(),
             'email' => fake()->email(),
-            'logo' => 'https://picsum.photos/200',
+            'logo' => 'https://picsum.photos/200?random='.rand(1,100000),
             'website' => fake()->url()
         ];
     }

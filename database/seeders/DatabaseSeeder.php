@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Company::factory(53)
-            ->has(Employee::factory(rand(3,15)))
+            ->has(Employee::factory(4))
             ->create();
     }
 }
