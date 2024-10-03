@@ -15,5 +15,5 @@
 //     ]);
 
 //     $this->assertAuthenticated();
-//     $response->assertRedirect(route('dashboard', absolute: false));
+//     $response->assertRedirect(route('company', absolute: false));
 // });
