@@ -21,7 +21,7 @@
             <div class="flex justify-between">
                 <div class="text-left">
                     @if (request('q'))
-                        <h3 class="text-lg inline-block mr-6">Search results for: <em>{{ request('q') }}</em></h3>
+                        <h3 class="text-lg inline-block mr-6"><em>{{ $qCount }} results for: </em> "{{ request('q') }}"</h3>
                         <a class="bg-red-600 text-white inline-block rounded py-1 px-4" href="{{ route('company') }}">Clear Search</a>
                     @endif
                 </div>

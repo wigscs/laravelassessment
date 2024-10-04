@@ -15,13 +15,15 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
+        $qCount = null;
         $q = Company::with('employees');
         if ($request->has('q')) {
             $q->where('name', 'LIKE', '%'.$request->get('q').'%');
+            $qCount = $q->count();
         }
         $companies = $q->paginate(10);
 
-        return view('companies.index', ['companies' => $companies]);
+        return view('companies.index', ['companies' => $companies, 'qCount' => $qCount]);
     }
 
     /**
@@ -53,16 +55,16 @@ class CompanyController extends Controller
             'logo' => $logoPath,
         ]);
 
-        return redirect()->route('company.show', $company);
+        return redirect()->route('company.edit', $company)->with('success', 'Company created.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Company $company)
-    {
-        return view('companies.show', ['company' => $company]);
-    }
+    // public function show(Company $company)
+    // {
+    //     return view('companies.show', ['company' => $company]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -93,7 +95,7 @@ class CompanyController extends Controller
             'logo' => $logoPath,
         ]);
 
-        return redirect()->route('company.show', $company);
+        return redirect()->route('company.edit', $company)->with('success', 'Company updated.');
     }
 
     /**
@@ -103,6 +105,6 @@ class CompanyController extends Controller
     {
         $company->delete();
 
-        return redirect()->route('company');
+        return redirect()->route('company')->with('success', 'Company deleted.');
     }
 }
