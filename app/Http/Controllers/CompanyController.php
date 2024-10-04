@@ -80,11 +80,13 @@ class CompanyController extends Controller
             'logo' => [File::image()->dimensions(Rule::dimensions()->minWidth(100)->minHeight(100))->max(12 * 1024)],
         ]);
 
+        $logoPath = $request->has('logo') ? $request->logo->store('logos') : $company->logo;
+
         $company->update([
             'name' => $request->name,
             'email' => $request->email,
             'website' => $request->website,
-            'logo' => $request->has('logo') ? $request->logo : $company->logo,
+            'logo' => $logoPath,
         ]);
 
         return redirect()->route('company.show', $company);

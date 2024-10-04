@@ -13,11 +13,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <x-forms.form method="POST" action="{{ route('company.store') }}" enctype="multipart/form-data">
+                <x-forms.form x-data="imgPreview" x-cloak method="POST" action="{{ route('company.store') }}" enctype="multipart/form-data">
                     <x-forms.input label="Company Name" name="name" />
                     <x-forms.input label="Company Email" name="email" />
                     <x-forms.input label="Website (URL)" name="website" placeholder="https://example.com/" />
-                    <x-forms.input label="Company Logo" name="logo" type="file" />
+
+                    <x-forms.image label="Company Logo" name="logo" type="file" />
 
                     <x-forms.button>Create</x-forms.button>
                 </x-forms.form>
