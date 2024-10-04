@@ -8,7 +8,7 @@
             </div>
             <div class="md:w-96">
                 <form action="{{ route('company') }}" class="flex">
-                    <input type="text" name="q" placeholder="Search Companies..." class="rounded-tl rounded-bl w-full focus:border-1 focus:ring-0">
+                    <input type="text" name="q" placeholder="Search Companies..." value="{{ request('q') }}" class="rounded-tl rounded-bl w-full focus:border-1 focus:ring-0">
                     <button type="submit" class="bg-black hover:bg-black/90 text-white px-3 rounded-tr rounded-br">Search</button>
                 </form>
             </div>
@@ -18,8 +18,16 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="text-right">
-                <a href="{{ route('company.create') }}" class="bg-blue-600 py-1 px-4 text-white rounded font-bold inline-block">Create New Company</a>
+            <div class="flex justify-between">
+                <div class="text-left">
+                    @if (request('q'))
+                        <h3 class="text-lg inline-block mr-6">Search results for: <em>{{ request('q') }}</em></h3>
+                        <a class="bg-red-600 text-white inline-block rounded py-1 px-4" href="{{ route('company') }}">Clear Search</a>
+                    @endif
+                </div>
+                <div class="text-right">
+                    <a href="{{ route('company.create') }}" class="bg-blue-600 py-1 px-4 text-white rounded font-bold inline-block">Create New Company</a>
+                </div>
             </div>
 
             @foreach ($companies as $company)
@@ -50,7 +58,7 @@
             @endforeach
 
             <div>
-                {{ $companies->links() }}
+                {{ $companies->appends(['q' => request('q')])->links() }}
             </div>
         </div>
 
