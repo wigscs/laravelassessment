@@ -71,6 +71,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
+        $company->load('employees');
         return view('companies.edit', ['company' => $company]);
     }
 

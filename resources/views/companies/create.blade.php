@@ -13,6 +13,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <h2 class="text-2xl font-bold mb-12">Company Details</h2>
+
                 <x-forms.form x-data="imgPreview" x-cloak method="POST" action="{{ route('company.store') }}" enctype="multipart/form-data">
                     <x-forms.input label="Company Name" name="name" />
                     <x-forms.input label="Company Email" name="email" />

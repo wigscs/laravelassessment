@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/companies/{company}/edit', [CompanyController::class, 'edit'])->name('company.edit');
     Route::patch('/companies/{company}', [CompanyController::class, 'update'])->name('company.update');
     Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->name('company.destroy');
+
+    Route::get('/companies/{company}/employees/create', [EmployeeController::class, 'create'])->name('employee.create');
+    Route::post('/companies/{company}/employees', [EmployeeController::class, 'store'])->name('employee.store');
+    Route::get('/employee/{employee}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
+    Route::patch('/employee/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
+    Route::delete('/employee/{employee}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+
 
 });
 
