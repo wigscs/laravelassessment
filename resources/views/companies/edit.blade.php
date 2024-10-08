@@ -27,12 +27,12 @@
                 </x-forms.form>
             </div>
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <div class="flex justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold mb-6">{{ $company->name }} Employees</h3>
+            <div id="employees" class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="flex flex-wrap justify-between items-center">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold">{{ $company->name }} Employees</h3>
                     </div>
-                    <div>
+                    <div class="mb-6">
                         <a class="bg-blue-600 py-2 px-4 rounded text-white font-bold" href="{{ route('employee.create', $company) }}">Add Employee</a>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-300 dark:divide-neutral-700">
-                            @foreach ($company->employees as $employee)
+                            @foreach ($employees as $employee)
                                 <tr>
                                     <td class="p-4">{{ $employee->full_name }}</td>
                                     <td class="p-4"><a class="text-blue-500 hover:underline" href="mailto:{{ $employee->email }}">{{ $employee->email }}</a></td>
@@ -68,6 +68,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="mt-6">
+                    {{ $employees->appends(['q' => request('q')])->fragment('employees')->links() }}
                 </div>
             </div>
 

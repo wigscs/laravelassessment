@@ -17,11 +17,12 @@ class CompanyController extends Controller
     {
         $qCount = null;
         $q = Company::with('employees');
+
         if ($request->has('q')) {
             $q->where('name', 'LIKE', '%'.$request->get('q').'%');
             $qCount = $q->count();
         }
-        $companies = $q->paginate(10);
+        $companies = $q->orderByRaw('UPPER(name)')->paginate(10);
 
         return view('companies.index', ['companies' => $companies, 'qCount' => $qCount]);
     }
@@ -71,8 +72,9 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        $company->load('employees');
-        return view('companies.edit', ['company' => $company]);
+        $employees = $company->employees()->orderByRaw('UPPER(first_name), UPPER(last_name)')->paginate(10);
+
+        return view('companies.edit', ['company' => $company, 'employees' => $employees]);
     }
 
     /**
