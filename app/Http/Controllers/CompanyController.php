@@ -56,7 +56,7 @@ class CompanyController extends Controller
             'logo' => $logoPath,
         ]);
 
-        return redirect()->route('company.edit', $company)->with('success', 'Company created.');
+        return redirect()->route('companies.edit', $company)->with('success', 'Company created.');
     }
 
     /**
@@ -98,7 +98,7 @@ class CompanyController extends Controller
             'logo' => $logoPath,
         ]);
 
-        return redirect()->route('company.edit', $company)->with('success', 'Company updated.');
+        return redirect()->route('companies.edit', $company)->with('success', 'Company updated.');
     }
 
     /**
@@ -108,6 +108,6 @@ class CompanyController extends Controller
     {
         $company->delete();
 
-        return redirect()->route('company')->with('success', 'Company deleted.');
+        return redirect()->route('companies.index')->with('success', 'Company deleted.');
     }
 }

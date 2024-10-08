@@ -15,7 +15,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <h2 class="text-2xl font-bold mb-12">Company Details</h2>
 
-                <x-forms.form x-data="imgPreview" x-cloak method="POST" action="{{ route('company.store') }}" enctype="multipart/form-data">
+                <x-forms.form x-data="imgPreview" x-cloak method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data">
                     <x-forms.input label="Company Name" name="name" />
                     <x-forms.input label="Company Email" name="email" />
                     <x-forms.input label="Website (URL)" name="website" placeholder="https://example.com/" />

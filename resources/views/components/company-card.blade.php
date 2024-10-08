@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="space-y-1 text-right pl-6 mb-auto">
-            <a href="{{ route('company.edit', $company) }}" class="bg-blue-600 hover:bg-blue-600/90 rounded py-1 px-4 text-white font-bold inline-block">Edit</a>
+            <a href="{{ route('companies.edit', $company) }}" class="bg-blue-600 hover:bg-blue-600/90 rounded py-1 px-4 text-white font-bold inline-block">Edit</a>
 
         </div>
     </div>

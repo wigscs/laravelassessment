@@ -35,7 +35,7 @@ class EmployeeController extends Controller
             'phone' => $request->get('phone'),
         ]);
 
-        return redirect()->route('company.edit', $company)->with('success', 'Employee added to company.');
+        return redirect()->route('companies.edit', $company)->with('success', 'Employee added to company.');
     }
 
     /**
@@ -65,7 +65,7 @@ class EmployeeController extends Controller
             'phone' => $request->get('phone'),
         ]);
 
-        return redirect()->route('company.edit', $employee->company)->with('success', 'Employee updated.');
+        return redirect()->route('companies.edit', $employee->company)->with('success', 'Employee updated.');
     }
 
     /**
@@ -76,6 +76,6 @@ class EmployeeController extends Controller
         $company = $employee->company;
         $employee->delete();
 
-        return redirect()->route('company.edit', $company)->with('success', 'Employee deleted.');
+        return redirect()->route('companies.edit', $company)->with('success', 'Employee deleted.');
     }
 }

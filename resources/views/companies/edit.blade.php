@@ -16,7 +16,7 @@
 
                 <h2 class="text-2xl font-bold mb-12">Company Details</h2>
 
-                <x-forms.form x-data="imgPreview" x-cloak method="PATCH" action="{{ route('company.update', $company) }}" enctype="multipart/form-data">
+                <x-forms.form x-data="imgPreview" x-cloak method="PATCH" action="{{ route('companies.update', $company) }}" enctype="multipart/form-data">
                     <x-forms.input label="Company Name" name="name" value="{{ old('name', $company->name)  }}" />
                     <x-forms.input label="Company Email" name="email" value="{{ old('email', $company->email) }}" />
                     <x-forms.input label="Website (URL)" name="website" placeholder="https://example.com/" value="{{ old('website', $company->website) }}" />
@@ -79,7 +79,7 @@
                     <h3 class="text-xl font-bold">Delete Company and Employees</h3>
                 </div>
                 <div>
-                    <form x-data method="POST" action="{{ route('company.destroy', $company) }}" class="inline-block">
+                    <form x-data method="POST" action="{{ route('companies.destroy', $company) }}" class="inline-block">
                         @csrf
                         @method('DELETE')
                         <button @click="if(!confirm('Are you sure you wan\'t to delete this company and all of it\'s employees?')) $event.preventDefault()" type="submit" class="bg-red-600 hover:bg-red-600/90 rounded py-1 px-4 text-white font-bold">Delete</button>
