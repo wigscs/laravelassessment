@@ -38,23 +38,12 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        $request->validate([
-            'name' => 'required|min:3|max:255',
-            'email' => 'required|email',
-            'website' => 'required|url',
-            'logo' => ['required', File::image()->dimensions(Rule::dimensions()->minWidth(100)->minHeight(100))->max(12 * 1024)],
-        ]);
+        $validated = $request->validated();
+        $validated['logo'] = $request->has('logo') ? $request->validated('logo')->store('logos') : null;
 
-        $logoPath = $request->logo->store('logos');
-
-        $company = Company::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'website' => $request->website,
-            'logo' => $logoPath,
-        ]);
+        $company = Company::create($validated);
 
         return redirect()->route('companies.edit', $company)->with('success', 'Company created.');
     }
@@ -80,23 +69,12 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyRequest $request, Company $company)
     {
-        $request->validate([
-            'name' => 'required|min:3|max:255',
-            'email' => 'required|email',
-            'website' => 'required|url',
-            'logo' => [File::image()->dimensions(Rule::dimensions()->minWidth(100)->minHeight(100))->max(12 * 1024)],
-        ]);
+        $validated = $request->validated();
+        $validated['logo'] = $request->has('logo') ? $request->validated('logo')->store('logos') : $company->logo;
 
-        $logoPath = $request->has('logo') ? $request->logo->store('logos') : $company->logo;
-
-        $company->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'website' => $request->website,
-            'logo' => $logoPath,
-        ]);
+        $company->update($validated);
 
         return redirect()->route('companies.edit', $company)->with('success', 'Company updated.');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -19,21 +20,9 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Company $company, Request $request)
+    public function store(Company $company, EmployeeRequest $request)
     {
-        $request->validate([
-            'first_name' => 'required|min:2|max:255',
-            'last_name' => 'required|min:2|max:255',
-            'email' => 'required|email',
-            'phone' => 'required',
-        ]);
-
-        $company->employees()->create([
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'email' => $request->get('email'),
-            'phone' => $request->get('phone'),
-        ]);
+        $company->employees()->create($request->validated());
 
         return redirect()->route('companies.edit', $company)->with('success', 'Employee added to company.');
     }
@@ -49,21 +38,9 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
+    public function update(EmployeeRequest $request, Employee $employee)
     {
-        $request->validate([
-            'first_name' => 'required|min:2|max:255',
-            'last_name' => 'required|min:2|max:255',
-            'email' => 'required|email',
-            'phone' => 'required',
-        ]);
-
-        $employee->update([
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'email' => $request->get('email'),
-            'phone' => $request->get('phone'),
-        ]);
+        $employee->update($request->validated());
 
         return redirect()->route('companies.edit', $employee->company)->with('success', 'Employee updated.');
     }
