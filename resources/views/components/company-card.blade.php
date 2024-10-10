@@ -11,8 +11,8 @@
             <div class="space-y-1 pl-4 sm:border-l border-gray-400">
                 <h3 class="text-lg font-bold">{{ $company->name }}</h3>
                 <span class="text-sm">Employees: {{ $company->employees()->count() }}</span>
-                <p><a class="text-sky-600 underline" href="mailto:email@email.com">email@email.com</a></p>
-                <p><a class="text-sky-600 underline" target="_blank" href="http://google.com">http://google.com</a></p>
+                <p><a class="text-sky-600 underline" href="mailto:{{ $company->email }}">{{ $company->email }}</a></p>
+                <p><a class="text-sky-600 underline" target="_blank" href="{{ $company->website }}">{{ $company->website }}</a></p>
             </div>
         </div>
         <div class="space-y-1 text-right pl-6 mb-auto">
