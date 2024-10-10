@@ -16,8 +16,8 @@
                 <h2 class="text-2xl font-bold mb-12">Company Details</h2>
 
                 <x-forms.form x-data="imgPreview" x-cloak method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data">
-                    <x-forms.input label="Company Name" name="name" />
-                    <x-forms.input label="Company Email" name="email" />
+                    <x-forms.input label="Company Name" name="name" required />
+                    <x-forms.input label="Company Email" name="email" type="email" />
                     <x-forms.input label="Website (URL)" name="website" placeholder="https://example.com/" />
 
                     <x-forms.image label="Company Logo" name="logo" type="file" />

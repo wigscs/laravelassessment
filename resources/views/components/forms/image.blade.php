@@ -1,4 +1,4 @@
-@props(['label', 'name', 'preview'])
+@props(['label', 'name', 'preview' => null])
 
 @php
     $defaults = [
@@ -7,11 +7,10 @@
         'name' => $name,
         'value' => old($name)
     ];
-
 @endphp
 
 <x-forms.field :$label :$name>
-    <div x-data="{ imgsrc: '{{ $preview ?? '' }}' }">
+    <div x-data="{ imgsrc: '{{ $preview ? asset($preview) : '' }}' }">
         <input {{ $attributes($defaults) }} accept="image/*" x-ref="myFile" @change="previewFile">
         <template x-if="imgsrc">
             <div class="mt-4">

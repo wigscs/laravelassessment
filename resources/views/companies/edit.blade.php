@@ -17,11 +17,11 @@
                 <h2 class="text-2xl font-bold mb-12">Company Details</h2>
 
                 <x-forms.form x-data="imgPreview" x-cloak method="PATCH" action="{{ route('companies.update', $company) }}" enctype="multipart/form-data">
-                    <x-forms.input label="Company Name" name="name" value="{{ old('name', $company->name)  }}" />
-                    <x-forms.input label="Company Email" name="email" value="{{ old('email', $company->email) }}" />
+                    <x-forms.input label="Company Name" name="name" value="{{ old('name', $company->name)  }}" required />
+                    <x-forms.input label="Company Email" name="email" value="{{ old('email', $company->email) }}" type="email" />
                     <x-forms.input label="Website (URL)" name="website" placeholder="https://example.com/" value="{{ old('website', $company->website) }}" />
 
-                    <x-forms.image label="Company Logo" name="logo" type="file" :preview="asset($company->logo)" />
+                    <x-forms.image label="Company Logo" name="logo" type="file" :preview="$company->logo" />
 
                     <x-forms.button>Update</x-forms.button>
                 </x-forms.form>

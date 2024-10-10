@@ -4,7 +4,9 @@
     <div class="p-6 text-gray-900 flex justify-between">
         <div class="flex mr-4">
             <div class="mr-4 hidden sm:flex items-center">
-                <img src="{{ asset($company->logo) }}" alt="{{ $company->name }}" height="100" width="100">
+                @if ($company->logo)
+                    <img src="{{ asset($company->logo) }}" alt="{{ $company->name }}" height="100" width="100">
+                @endif
             </div>
             <div class="space-y-1 pl-4 sm:border-l border-gray-400">
                 <h3 class="text-lg font-bold">{{ $company->name }}</h3>

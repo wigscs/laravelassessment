@@ -20,9 +20,9 @@
                 <h2 class="text-2xl font-bold mb-12">Employee Details</h2>
 
                 <x-forms.form x-cloak method="POST" action="{{ route('employee.store', $company) }}">
-                    <x-forms.input label="First Name" name="first_name" />
-                    <x-forms.input label="Last Name" name="last_name" />
-                    <x-forms.input label="Email Address" name="email" />
+                    <x-forms.input label="First Name" name="first_name" required />
+                    <x-forms.input label="Last Name" name="last_name" required />
+                    <x-forms.input label="Email Address" name="email" type="email" />
                     <x-forms.input label="Phone Number" name="phone" />
 
                     <x-forms.button>Create Employee</x-forms.button>
