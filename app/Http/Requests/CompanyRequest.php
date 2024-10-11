@@ -27,7 +27,7 @@ class CompanyRequest extends FormRequest
             'name' => ['required', 'min:3', 'max:255'],
             'email' => ['nullable', 'email'],
             'website' => ['nullable', 'url'],
-            'logo' => ['nullable', File::image()->dimensions(Rule::dimensions()->minWidth(100)->minHeight(100))->max(12 * 1024)],
+            'logo' => ['nullable', File::image()->dimensions(Rule::dimensions()->minWidth(100)->minHeight(100))->max(2 * 1024)],
         ];
     }
 }
